@@ -1,0 +1,180 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <style>
+      body {
+        background-color: aquamarine;
+      }
+      nav {
+        background-color: black;
+        color: white;
+        height: 7%;
+        text-align: center;
+        font-size: 200%;
+        text-decoration: none;
+      }
+      .container {
+        height: 50%;
+        width: 80%;
+      }
+      .number {
+        position: absolute;
+        color: white;
+        font-size: 200%;
+        margin-top: -0.25%;
+        margin-left: 25%;
+      }
+      .photoText {
+        position: absolute;
+        margin-top: -0.0001%;
+        color: purple;
+        border: 5px solid red;
+        margin-top: 5px;
+        width: 48%;
+        font-size: 200%;
+        margin-left: 23.7%;
+        text-align: center;
+      }
+      .btnr {
+        position: absolute;
+        background-color: orangered;
+        margin-top:;
+        margin-left: 0.015%;
+      }
+      .btnl {
+        position: absolute;
+        background: white;
+        margin-top: ;
+        background-color: orangered;
+        margin-left:-50% ;
+      }
+      .btnl:hover,
+      .btnr:hover {
+        cursor: pointer;
+        background-color: white;
+      }
+      .picture {
+        height: 150%;
+        width: 60%;
+        margin-left: 30%;
+        border: 5px solid red;
+        border-radius: 5px;
+      }
+      #more1{
+          float: right;
+      }
+      #more1:hover{
+          background: purple;
+          cursor: pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav>Our History Our Heritage</nav>
+
+    <main>
+      <h1 style="text-align: center">Our Heroes</h1>
+
+      <div class="container">
+        <div class="photo" style="display: normal">
+          <h5 class="number">1/3</h5>
+          <img src="Nwab Kapur Singh.jpeg" class="picture" />
+          <h5 class="photoText">Nwab Kapur Singh<a class="NawabKapurSingh" id="more1" onclick="view(this)">🔻</a></h5>
+          <button onclick="change(-1) " class="btnl">◁</button>
+        <button onclick="change(1)" class="btnr">▷</button>
+        </div>
+        <div class="photo" style="display: none">
+          <h5 class="number">2/3</h5>
+          <img src="Jassa-Singh-Ahluwalia.jpeg" class="picture" />
+          <h5 class="photoText">Jassa Singh Ahluwalia<a class="JassaSingh" id="more1" onclick="view(this)">🔻</a></h5>
+          <button onclick="change(-1) " class="btnl">◁</button>
+        <button onclick="change(1)" class="btnr">▷</button>
+        </div>
+        <div class="photo" style="display: none">
+          <h5 class="number">3/3</h5>
+          <img src="HariSingh.webp" class="picture" />
+          <h5 class="photoText">Hari Singh Nalwa <a class="HariSingh" id="more1" onclick="view(this)">🔻</a></h5>
+          <button onclick="change(-1) " class="btnl">◁</button>
+        <button onclick="change(1)" class="btnr">▷</button>
+        </div>
+        
+      </div>
+    </main>
+    <script>
+      let curVal = 0;
+      function change(v) {
+        if (v == -1) {
+          var elms = document.getElementsByClassName("photo");
+
+          let vals = Array.from(elms);
+
+          vals[curVal].style.display = "none";
+          if (curVal - 1 >= 0) {
+            vals[curVal - 1].style.display = "block";
+            curVal -= 1;
+          } else {
+            vals[2].style.display = "block";
+            curVal = 2;
+          }
+        } else {
+          var elms = document.getElementsByClassName("photo");
+
+          let vals = Array.from(elms);
+          if (curVal + 1 <= 2) {
+            vals[curVal + 1].style.display = "block";
+            vals[curVal].style.display = "none";
+            curVal += 1;
+          } else {
+            vals[0].style.display = "block";
+            //console.log( vals[2].style.display);
+            vals[2].style.display = "none";
+            //console.log( vals[0].style.display);
+            curVal = 0;
+          }
+        }
+      }
+      function view(e){
+          if(e.className=="NawabKapurSingh"&&e.textContent=="🔻"){
+              e.textContent="🔺";
+              let text=document.createElement('p');
+              text.className="INFO";
+              text.textContent="Nawab Kapur Singh Ji (1697-1753 A.D.) was one of the great Sikh warriors and leaders of the 18th century. He founded Singhpuria Misl and played key role to organize Sikh diaspora into a single force called Dal Khalsa and is thus known as father of the Sikh Confederacy and Sikh Empire. He divided Dal Khalsa into two sections: The Budha Dal-army of the veterans and the Tarna Dal - army of the young. He was known for his high character and commanded great respect of all Sikhs. In 1733 A.D., the Mughal government at the time of Zakariya Khan offered an estate and title of Nawab to the Sikhs. The Sarbat Khalsa decided to give the title of Nawab to Kapur Singh. Kapur Singh showed extreme humility and agreed to accept the title after touching to the feet of Panj Piara's (five beloved ones) with the condition that he would continue to serve the community as an ordinary Sikh.";
+              e.parentElement.append(text);
+          }
+          else if(e.className=="NawabKapurSingh"&&e.textContent=="🔺"){
+              e.textContent="🔻";
+              let del=e.nextElementSibling;
+              del.remove();
+          }
+          else if(e.className=="HariSingh"&&e.textContent=="🔻"){
+              e.textContent="🔺";
+              let text=document.createElement('p');
+              text.className="INFO";
+              text.textContent="Sardar Hari Singh Nalwa Ji (1791-1837 A.D.) was born to Gurdial Singh and Dharam Kaur at Gujranwala, Pakistan. He was only fourteen when Maharaja Ranjit Singh appointed him as his personal attendant. During a hunt, he killed a tiger by tearing it from the jaws with his hands and earned the title of 'Nalwa'. He was appointed as Commander-In-Chief of the Khalsa army and extended the frontier of the Sikh empire up to the Khyber Pass. He is the only commander in the history, who defeated Afghans in their own backyard. On April 30, 1837 in the battle of Jamrud, he received four gun-shot and continued to lead his troops, until he received another gunshot. Mustering his failing strength, he managed to reach his tent. The great General passed away the same evening after instructing Khalsa army to not make his death public. The Pathans were afraid of him even after his death.";
+              e.parentElement.append(text);
+          }
+          else if(e.className=="HariSingh"&&e.textContent=="🔺"){
+              e.textContent="🔻";
+              let del=e.nextElementSibling;
+              del.remove();
+          }
+          else if(e.className=="JassaSingh"&&e.textContent=="🔻"){
+              e.textContent="🔺";
+              let text=document.createElement('p');
+              text.className="INFO";
+              text.textContent="Sardar Jassa Singh Ahluwalia Ji (1718-1783 A.D.) was born at village Ahlu, near Lahore in Pakistan. He studied Sikh scriptures from Bhai Mani Singh and enjoyed the blessings of Mata Sundar Kaur Ji. He was a great musician (rababi kirtankaar) and chief of the Ahluwalia Misl. Nawab Kapur Singh appointed him as leader of the Dal Khalsa in 1748 A.D. He was conferred the title of Sultan- ul-Qaum when he captured Lahore in 1761 A.D. In 1762 A.D., he led the Sikhs valiantly even after having 22 wounds on his body during the battle of Vadda Ghalughara (Big Holocaust) with the huge army of Ahmed Shah Abdali at Kup Rahira (near Malerkotla). Only six months after the massacre of about 30,000 Sikhs at Kup Rahira, he reorganized Sikhs and defeated Abdali at Sri Amritsar Sahib. Under his able leadership, Dal Khalsa rescued thousands of Hindu women from Abdali and escorted them safely to their homes.";
+              e.parentElement.append(text);
+          }
+          else if(e.className=="JassaSingh"&&e.textContent=="🔺"){
+              e.textContent="🔻";
+              let del=e.nextElementSibling;
+              del.remove();
+          }
+      }
+    </script>
+  </body>
+</html>
