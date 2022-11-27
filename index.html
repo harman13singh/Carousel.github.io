@@ -1,0 +1,124 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <style>
+      body {
+        background-color: aquamarine;
+      }
+      nav {
+        background-color: black;
+        color: white;
+        height: 7%;
+        text-align: center;
+        font-size: 200%;
+        text-decoration: none;
+      }
+      .container {
+        height: 50%;
+        width: 80%;
+      }
+      .number {
+        position: absolute;
+        color: white;
+        font-size: 200%;
+        margin-top: -0.25%;
+        margin-left: 25%;
+      }
+      .photoText {
+        position: absolute;
+        margin-top: -3%;
+        color: white;
+        font-size: 200%;
+        margin-left: 37%;
+        text-align: center;
+      }
+      .btnr {
+        position: absolute;
+        background-color: yellow;
+        margin-top: -23%;
+        margin-left: 68%;
+      }
+      .btnl {
+        position: absolute;
+        background: white;
+        margin-top: -23%;
+        background-color: yellow;
+        margin-left: 25%;
+      }
+      .btnl:hover,
+      .btnr:hover {
+        cursor: pointer;
+        background-color: white;
+      }
+      .picture {
+        height: 150%;
+        width: 60%;
+        margin-left: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>Our History Our Heritage</nav>
+
+    <main>
+      <h1 style="text-align: center">Our Heroes</h1>
+
+      <div class="container">
+        <div class="photo" style="display: normal">
+          <h5 class="number">1/3</h5>
+          <img src="Nwab Kapur Singh.jpeg" class="picture" />
+          <h5 class="photoText">Nwab Kapur Singh</h5>
+        </div>
+        <div class="photo" style="display: none">
+          <h5 class="number">2/3</h5>
+          <img src="Jassa-Singh-Ahluwalia.jpeg" class="picture" />
+          <h5 class="photoText">Jassa Singh Ahluwalia</h5>
+        </div>
+        <div class="photo" style="display: none">
+          <h5 class="number">3/3</h5>
+          <img src="HariSingh.webp" class="picture" />
+          <h5 class="photoText">Hari Singh Nalwa</h5>
+        </div>
+        <button onclick="change(-1) " class="btnl">◁</button>
+        <button onclick="change(1)" class="btnr">▷</button>
+      </div>
+    </main>
+    <script>
+      let curVal = 0;
+      function change(v) {
+        if (v == -1) {
+          var elms = document.getElementsByClassName("photo");
+
+          let vals = Array.from(elms);
+
+          vals[curVal].style.display = "none";
+          if (curVal - 1 >= 0) {
+            vals[curVal - 1].style.display = "block";
+            curVal -= 1;
+          } else {
+            vals[2].style.display = "block";
+            curVal = 2;
+          }
+        } else {
+          var elms = document.getElementsByClassName("photo");
+
+          let vals = Array.from(elms);
+          if (curVal + 1 <= 2) {
+            vals[curVal + 1].style.display = "block";
+            vals[curVal].style.display = "none";
+            curVal += 1;
+          } else {
+            vals[0].style.display = "block";
+            //console.log( vals[2].style.display);
+            vals[2].style.display = "none";
+            //console.log( vals[0].style.display);
+            curVal = 0;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
